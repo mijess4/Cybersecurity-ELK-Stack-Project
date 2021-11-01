@@ -29,19 +29,16 @@ Load balancing ensures that the application will be highly available, in additio
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the log files and system performance.
 - Filebeat monitors the log files or specifed locatins, collects log events, and forwads them to Elasticsearch or Logstash for indexing.
 - Metricbeat periodically collect metrics from the system and services running on the server and ships them to the desired output, such as Elasticsearch or Logstash. 
-_TODO: What does Filebeat watch for?-
-- _TODO: What does Metricbeat record?_
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-|         Name         | Function | IP Adress |  Operating System  |
-|:--------------------:|:--------:|:---------:|:------------------:|
-| Jump-Box-Provisioner | Gateway  | 10.1.0.4  | Linux Ubuntu 18.04 |
-| Web-1                | VM       | 10.0.0.5  | Linux Ubuntu 18.04 |
-| Web-2                | VM       | 10.0.0.7  | Linux Ubuntu 18.04 |
-| Web-3                | VM       | 10.0.0.8  | Linux Ubuntu 18.04 |
-| ELK-SERVER           | ElkStack | 10.1.0.4  | Linux Ubuntu 18.04 |
+|         Name         	|  Function 	| IP Address 	|  Operating System  	|
+|:--------------------:	|:---------:	|:----------:	|:------------------:	|
+| Jump-Box-Provisioner 	| Gateway   	| 10.0.0.4   	| Linux Ubuntu 18.04 	|
+| Web-1                	| Webserver 	| 10.0.0.5   	| Linux Ubuntu 18.04 	|
+| Web-2                	| Webserver 	| 10.0.0.7   	| Linux Ubuntu 18.04 	|
+| Web-3                	| Webserver 	| 10.0.0.8   	| Linux Ubuntu 18.04 	|
+| ELK-SERVER           	| Elk-Stack 	| 10.1.0.4   	| Linux Ubuntu 18.04 	|
 
 ### Access Policies
 
@@ -58,10 +55,10 @@ A summary of the access policies in place can be found in the table below.
 |         Name         	| Publicly Accessible 	| Allowed IP Addresses 	|
 |:--------------------:	|:-------------------:	|:--------------------:	|
 | Jump-Box-Provisioner 	| No                  	| 73.87.136.234        	|
-| Web-1                	| No                  	| 10.0.0.4             	|
-| Web-2                	| No                  	| 10.0.0.4             	|
-| Web-3                	| No                  	| 10.0.0.4             	|
-| ELK-SERVER           	| No                  	| 10.0.0.4             	|
+| Web-1                	| No                  	| 13.92.180.58         	|
+| Web-2                	| No                  	| 13.92.180.58         	|
+| Web-3                	| No                  	| 13.92.180.58         	|
+| ELK-SERVER           	| No                  	| 13.92.180.68        	|
 
 ### Elk Configuration
 
@@ -76,7 +73,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+![image](https://user-images.githubusercontent.com/87951718/139755712-da6207db-6585-47c6-82db-2295bdfb3119.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -100,12 +97,15 @@ SSH into the control node and follow the steps below:
 - Run the playbook, and navigate to http://[your_elk_server_ip]:5601/app/kibana to check that the installation worked as expected.
 - The playbook file is /etc/ansible/filebeat-config.yml and it is copied to /etc/filebeat/filebeat.yml
 - To make ansible run the playbook on a specific machine, update the filebeat-config.yml file. Use the hosts file to update the IP addressess and choose which to run on ansible.
-
-
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+- Navigate to Kibana/logs/DEBtab/, scroll down, and check taht the beat is running.
 
 Use the following useful commands to run filebeat:
 
+- curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/filebeat-config.yml
+- curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-darwin-x86_64.tar.gz
+- dpkg -i filebeat-7.4.0-amd64.deb
+- filebeat modules enable system
+- filebeat setup
+- service filebeat start
+
+Repeat the process for metricbeat.
