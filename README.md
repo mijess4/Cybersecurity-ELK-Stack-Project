@@ -103,7 +103,7 @@ Use the following useful commands to run filebeat:
 
 - curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/filebeat-config.yml
 - curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-darwin-x86_64.tar.gz
-- dpkg -i filebeat-7.4.0-amd64.deb
+- dpkg -i filebeat-7.6.1-amd64.deb
 - filebeat modules enable system
 - filebeat setup
 - service filebeat start
