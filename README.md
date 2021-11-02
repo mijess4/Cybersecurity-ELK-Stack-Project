@@ -94,10 +94,15 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 - Copy the configuration file to your Web VMs.
 - Update the /etc/annsible/hosts file to include the IP address of the ELK and VM webservers.
-- Run the playbook, and navigate to http://[your_elk_server_ip]:5601/app/kibana to check that the installation worked as expected.
+- Run the playbook, and navigate to http://[your_elk_server_ip]:5601/app/kibana to check that the installation worked as expected. If sucessful you will see a screen like the image below.
+
+![image](https://user-images.githubusercontent.com/87951718/139757970-3a8539c0-26f1-4237-80f5-d496435fc44d.png)
+
 - The playbook file is /etc/ansible/filebeat-config.yml and it is copied to /etc/filebeat/filebeat.yml
 - To make ansible run the playbook on a specific machine, update the filebeat-config.yml file. Use the hosts file to update the IP addressess and choose which to run on ansible.
-- Navigate to Kibana/logs/DEBtab/, scroll down, and check taht the beat is running.
+- Navigate to Kibana/logs/DEBtab/, scroll down, and check taht the beat is running. if successfully installed, you will see a message like the image below.
+
+![image](https://user-images.githubusercontent.com/87951718/139758244-3a9be39e-43c7-4196-b08a-b9dab88e9d2d.png)
 
 Use the following useful commands to run filebeat:
 
