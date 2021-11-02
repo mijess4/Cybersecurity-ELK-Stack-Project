@@ -22,7 +22,7 @@
     command: metricbeat setup
     # Use command module
   - name: start metric beat
-    command: service metricbeat start
+    command: service metricbeat start -e
     # Use systemd module
   - name: Enable service metricbeat on boot
     systemd:
